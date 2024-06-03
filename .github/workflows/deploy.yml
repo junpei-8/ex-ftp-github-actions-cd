@@ -37,8 +37,7 @@ jobs:
             **/.git*/**
             **/.vscode/**
             **/node_modules/**
-            ./scss/**
+            scss/**
           log-level: verbose
-          dry-run: true
-          # dry-run: ${{ github.event.inputs.dry-run }}
+          dry-run: ${{ github.event.inputs.dry-run || true }}
           dangerous-clean-slate: false
