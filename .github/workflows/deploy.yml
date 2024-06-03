@@ -34,7 +34,7 @@ jobs:
     runs-on: ubuntu-latest
     env:
       ENVIRONMENT: "$ROOT_ENVIRONMENT"
-    environment: "$ROOT_ENVIRONMENT"
+    environment: ${{ env.ENVIRONMENT }}
     steps:
       - name: 🚚 Get latest code
         uses: actions/checkout@v4
