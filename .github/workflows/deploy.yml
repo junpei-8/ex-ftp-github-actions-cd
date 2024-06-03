@@ -37,6 +37,7 @@ jobs:
             **/.git*/**
             **/.vscode/**
             **/node_modules/**
+            scss/**
           log-level: verbose
           dry-run: true
           # dry-run: ${{ github.event.inputs.dry-run }}
