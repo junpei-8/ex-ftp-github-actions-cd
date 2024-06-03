@@ -33,6 +33,8 @@ jobs:
   deploy:
     name: 🎉 Deploy
     runs-on: ubuntu-latest
+    env:
+      ENVIRONMENT: ${{ env.ENVIRONMENT }}
     environment:
       name: ${{ env.ENVIRONMENT }}
     steps:
