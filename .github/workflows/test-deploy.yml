@@ -1,10 +1,7 @@
-name: 🎱 [Test] Deploy website on push
+name: 🎱 Test deploy website on push
 
 on:
   workflow_dispatch:
-  push:
-    branches:
-      - main
 
 jobs:
   web-deploy:
@@ -22,7 +19,7 @@ jobs:
           password: ${{ secrets.FTP_PASSWORD }}
           dry-run: true
           dangerous-clean-slate: false
-          server-dir: public_html/www/
+          server-dir: public_html2/www/
           local-dir: ./
           exclude: |
             ./.git*
