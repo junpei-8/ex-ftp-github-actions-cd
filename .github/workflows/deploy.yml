@@ -21,13 +21,13 @@ env:
 
 jobs:
   info:
-    name: 💲 Information
+    name: 📃 Information
     runs-on: ubuntu-latest
     steps:
       - name: 📝 Print information
         run: |
           echo -e "## Environment\n$ENVIRONMENT" >> $GITHUB_STEP_SUMMARY
-          echo -e "## Input Parameters\n\`\`\`js\n${{ toJson(fromJson(toJson(github.event.inputs))) }}\n\`\`\`" >> $GITHUB_STEP_SUMMARY
+          echo -e "## Input Parameters\n\`\`\`yaml\n${{ toJson(github.event.inputs) }}\n\`\`\`" >> $GITHUB_STEP_SUMMARY
 
   deploy:
     name: 🎉 Deploy
