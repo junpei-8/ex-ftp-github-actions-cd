@@ -15,11 +15,24 @@ on:
         description: Dry run
         default: true
 
+env:
+  ENVIRONMENT: ${{ github.event.inputs.environment || 'Production' }}
+  DRY_RUN: ${{ github.event.inputs.dry-run || true }}
+
 jobs:
+  info:
+    runs-on: ubuntu-latest
+    steps:
+      - name: job summary
+        run: |
+          echo "# Running Information" >> $GITHUB_STEP_SUMMARY
+          echo "## Environment\n$ENVIRONMENT" >> $GITHUB_STEP_SUMMARY
+          echo "## Input Parameters\n```json\n${{ tojson(inputs) }}```" >> $GITHUB_STEP_SUMMARY
+
   deploy:
     name: 🎉 Deploy
     runs-on: ubuntu-latest
-    environment: ${{ github.event.inputs.environment || 'Production' }}
+    environment: $ENVIRONMENT
     steps:
       - name: 🚚 Get latest code
         uses: actions/checkout@v4
@@ -39,5 +52,5 @@ jobs:
             **/node_modules/**
             scss/**
           log-level: verbose
-          dry-run: ${{ github.event.inputs.dry-run || true }}
+          dry-run: $DRY_RUN
           dangerous-clean-slate: false
