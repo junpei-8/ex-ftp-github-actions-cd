@@ -1,4 +1,4 @@
-name: 🚀 Deploy
+run-name: 🚀 Deploy by @${{ github.actor }} on "${{ github.event_name }}"
 
 on:
   push:
