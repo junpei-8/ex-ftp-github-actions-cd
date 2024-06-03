@@ -1,8 +1,15 @@
 name: 🚀 Deploy website on push
 
 on:
+  # push:
+  #   branches:
+  #     - main
   workflow_dispatch:
     inputs:
+      environment:
+        type: environment
+        description: Environment
+        default: Development
       log-level:
         type: choice
         description: Log level
@@ -11,9 +18,6 @@ on:
           - standard
           - verbose
         default: verbose
-      environment:
-        type: environment
-        description: Environment
       dry-run:
         type: boolean
         description: Dry run
