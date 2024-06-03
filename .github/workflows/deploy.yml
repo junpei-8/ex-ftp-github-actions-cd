@@ -16,7 +16,7 @@ on:
         default: true
 
 env:
-  INPUT_PARAMETERS: ${{ toJson(inputs) }}
+  INPUT_PARAMETERS: ${{ toJson(github.event.inputs) }}
   ENVIRONMENT: ${{ github.event.inputs.environment || 'Production' }}
   DRY_RUN: ${{ github.event.inputs.dry-run || true }}
 
@@ -34,7 +34,7 @@ jobs:
     name: 🎉 Deploy
     runs-on: ubuntu-latest
     environment:
-      name: "$ENVIRONMENT"
+      name: ${{ env.ENVIRONMENT }}
     steps:
       - name: 🚚 Get latest code
         uses: actions/checkout@v4
