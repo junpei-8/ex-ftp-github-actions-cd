@@ -26,7 +26,8 @@ jobs:
       - name: 📝 Print information
         run: |
           echo "## Input Parameters" >> $GITHUB_STEP_SUMMARY
-          echo "${{ tojson(github) }}" >> $GITHUB_STEP_SUMMARY
+          echo "$GITHUB_ENV" >> $GITHUB_STEP_SUMMARY
+          echo -e "\`\`\`json\n{ "test": "hoge" }\n\`\`\`" >> $GITHUB_STEP_SUMMARY
 
   deploy:
     name: 🎉 Deploy
