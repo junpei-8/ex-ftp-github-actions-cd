@@ -19,7 +19,7 @@ jobs:
           password: ${{ secrets.FTP_PASSWORD }}
           dry-run: true
           dangerous-clean-slate: false
-          server-dir: public_html2/www/
+          server-dir: xs363308.xsrv.jp/public_html/
           local-dir: ./
           exclude: |
             ./.git*
