@@ -26,7 +26,7 @@ jobs:
       - name: 📝 Print information
         run: |
           echo "## Input Parameters" >> $GITHUB_STEP_SUMMARY
-          echo ${{ tojson(inputs) }} >> $GITHUB_STEP_SUMMARY
+          echo "${{ tojson(inputs) }}" >> $GITHUB_STEP_SUMMARY
 
   deploy:
     name: 🎉 Deploy
