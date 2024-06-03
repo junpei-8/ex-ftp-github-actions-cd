@@ -16,8 +16,6 @@ on:
         default: true
 
 env:
-  ROOT_ENVIRONMENT: ${{ github.event.inputs.environment || 'Production' }}
-  INPUT_PARAMETERS: ${{ tojson(github.event.inputs) }}
   DRY_RUN: ${{ github.event.inputs.dry-run || true }}
 
 jobs:
@@ -27,14 +25,13 @@ jobs:
     steps:
       - name: 📝 Print information
         run: |
-          echo -e "## Input Parameters\n```json\n$INPUT_PARAMETERS\n```" >> $GITHUB_STEP_SUMMARY
+          echo "## Input Parameters" >> $GITHUB_STEP_SUMMARY
+          echo ${{ tojson(inputs) }} >> $GITHUB_STEP_SUMMARY
 
   deploy:
     name: 🎉 Deploy
     runs-on: ubuntu-latest
-    env:
-      ENVIRONMENT: "$ROOT_ENVIRONMENT"
-    environment: ${{ env.ENVIRONMENT }}
+    environment: ${{ github.event.inputs.environment || 'Production' }}
     steps:
       - name: 🚚 Get latest code
         uses: actions/checkout@v4
