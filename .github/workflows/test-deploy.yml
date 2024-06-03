@@ -2,6 +2,11 @@ name: 🎱 Test deploy website on push
 
 on:
   workflow_dispatch:
+    inputs:
+      dryrun:
+        type: boolean
+        description: Is dry run?
+        default: true
 
 jobs:
   web-deploy:
@@ -26,4 +31,4 @@ jobs:
             **/.git*/**
             **/.vscode/**
             **/node_modules/**
-            xs363308.xsrv.jp/public_html/scss/**
+            ./scss/**
