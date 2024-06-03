@@ -1,17 +1,27 @@
-name: 🎱 Test deploy website on push
+name: 🚀 Deploy website on push
 
 on:
   workflow_dispatch:
     inputs:
-      dryrun:
+      log-level:
+        type: choice
+        description: Log level
+        options: 
+          - minimal
+          - standard
+          - verbose
+        default: verbose
+      dry-run:
         type: boolean
-        description: Is dry run?
+        description: Dry run
         default: true
 
 jobs:
-  web-deploy:
-    name: 🎉 Test deploy
+  deploy:
+    name: 🎉 Deploy
     runs-on: ubuntu-latest
+    environment:
+      name: Deployment
     steps:
       - name: 🚚 Get latest code
         uses: actions/checkout@v4
@@ -22,8 +32,6 @@ jobs:
           server: sv14944.xserver.jp
           username: chrs194399@xs363308.xsrv.jp
           password: ${{ secrets.FTP_PASSWORD }}
-          dry-run: true
-          dangerous-clean-slate: false
           server-dir: xs363308.xsrv.jp/public_html/
           local-dir: ./
           exclude: |
@@ -31,4 +39,6 @@ jobs:
             **/.git*/**
             **/.vscode/**
             **/node_modules/**
-            ./scss/**
+          log-level: ${{ github.event.inputs.log-level }}
+          dry-run: ${{ github.event.inputs.dry-run }}
+          dangerous-clean-slate: false
