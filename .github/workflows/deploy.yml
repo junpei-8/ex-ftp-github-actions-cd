@@ -23,11 +23,11 @@ jobs:
   info:
     runs-on: ubuntu-latest
     steps:
-      - name: job summary
+      - name: 📝 Print Information
         run: |
-          echo "# Running Information" >> $GITHUB_STEP_SUMMARY
-          echo "## Environment\n$ENVIRONMENT" >> $GITHUB_STEP_SUMMARY
-          echo "## Input Parameters\n```json\n${{ tojson(inputs) }}```" >> $GITHUB_STEP_SUMMARY
+          echo -e "# Running Information" >> $GITHUB_STEP_SUMMARY
+          echo -e "## Environment\n$ENVIRONMENT" >> $GITHUB_STEP_SUMMARY
+          echo -e "## Input Parameters\n```json\n${{ tojson(inputs) }}```" >> $GITHUB_STEP_SUMMARY
 
   deploy:
     name: 🎉 Deploy
