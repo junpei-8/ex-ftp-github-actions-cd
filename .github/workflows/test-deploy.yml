@@ -22,7 +22,7 @@ jobs:
           server-dir: xs363308.xsrv.jp/public_html/
           local-dir: ./
           exclude: |
-            ./.git*
-            ./.git*/**
+            **/.git*
+            **/.git*/**
+            **/.vscode/**
             **/node_modules/**
-            ./scss/**
