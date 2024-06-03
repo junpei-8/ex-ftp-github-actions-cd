@@ -26,3 +26,4 @@ jobs:
             **/.git*/**
             **/.vscode/**
             **/node_modules/**
+            xs363308.xsrv.jp/public_html/scss/**
