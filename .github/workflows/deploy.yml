@@ -10,14 +10,6 @@ on:
         type: environment
         description: Environment
         default: Development
-      log-level:
-        type: choice
-        description: Log level
-        options: 
-          - minimal
-          - standard
-          - verbose
-        default: verbose
       dry-run:
         type: boolean
         description: Dry run
@@ -27,8 +19,7 @@ jobs:
   deploy:
     name: 🎉 Deploy
     runs-on: ubuntu-latest
-    environment:
-      name: ${{ github.event.inputs.environment }}
+    environment: ${{ github.event.inputs.environment || 'Production' }}
     steps:
       - name: 🚚 Get latest code
         uses: actions/checkout@v4
@@ -46,7 +37,7 @@ jobs:
             **/.git*/**
             **/.vscode/**
             **/node_modules/**
-          log-level: ${{ github.event.inputs.log-level }}
+          log-level: verbose
           dry-run: true
           # dry-run: ${{ github.event.inputs.dry-run }}
           dangerous-clean-slate: false
