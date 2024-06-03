@@ -23,6 +23,8 @@ jobs:
   deploy:
     name: 🎉 Deploy
     runs-on: ubuntu-latest
+    environment:
+      name: ${{ github.event.inputs.environment }}
     steps:
       - name: 🚚 Get latest code
         uses: actions/checkout@v4
@@ -41,5 +43,6 @@ jobs:
             **/.vscode/**
             **/node_modules/**
           log-level: ${{ github.event.inputs.log-level }}
-          dry-run: ${{ github.event.inputs.dry-run }}
+          dry-run: true
+          # dry-run: ${{ github.event.inputs.dry-run }}
           dangerous-clean-slate: false
