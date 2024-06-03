@@ -1,23 +1,20 @@
 name: 🚀 Deploy
 
 on:
-  # push:
-  #   branches:
-  #     - main
+  push:
+    branches:
+      - main
   workflow_dispatch:
     inputs:
       environment:
         type: environment
         description: Environment
         default: Development
+        required: true
       dry-run:
         type: boolean
         description: Dry run
         default: true
-
-env:
-  ENVIRONMENT: ${{ github.event.inputs.environment || 'Production' }}
-  DRY_RUN: ${{ github.event.inputs.dry-run || true }}
 
 jobs:
   info:
@@ -26,7 +23,7 @@ jobs:
     steps:
       - name: 📝 Print information
         run: |
-          echo -e "## Environment\n$ENVIRONMENT" >> $GITHUB_STEP_SUMMARY
+          echo -e "## Environment\n${{ github.event.inputs.environment || 'Production' }}" >> $GITHUB_STEP_SUMMARY
           echo -e "## Input Parameters\n\`\`\`yaml\n${{ toJson(github.event.inputs) }}\n\`\`\`" >> $GITHUB_STEP_SUMMARY
 
   deploy:
@@ -52,5 +49,5 @@ jobs:
             **/node_modules/**
             scss/**
           log-level: verbose
-          dry-run: $DRY_RUN
+          dry-run: ${{ github.event.inputs.dry-run || true }}
           dangerous-clean-slate: false
