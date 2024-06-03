@@ -11,6 +11,10 @@ on:
           - standard
           - verbose
         default: verbose
+      environment:
+        type: environment
+        description: Environment
+        default: Production
       dry-run:
         type: boolean
         description: Dry run
@@ -20,8 +24,6 @@ jobs:
   deploy:
     name: 🎉 Deploy
     runs-on: ubuntu-latest
-    environment:
-      name: Deployment
     steps:
       - name: 🚚 Get latest code
         uses: actions/checkout@v4
