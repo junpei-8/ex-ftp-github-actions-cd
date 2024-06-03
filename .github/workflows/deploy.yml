@@ -26,10 +26,8 @@ jobs:
     steps:
       - name: 📝 Print information
         run: |
-          echo "## Environment" >> $GITHUB_STEP_SUMMARY
-          echo "$ENVIRONMENT" >> $GITHUB_STEP_SUMMARY
-          echo "## Input Parameters" >> $GITHUB_STEP_SUMMARY
-          echo -e "\`\`\`json\n${{ toJson(github.event.inputs) }}\n\`\`\`" >> $GITHUB_STEP_SUMMARY
+          echo -e "## Environment\n$ENVIRONMENT" >> $GITHUB_STEP_SUMMARY
+          echo -e "## Input Parameters\n\`\`\`js\n${{ fromJson(github.event.inputs) }}\n\`\`\`" >> $GITHUB_STEP_SUMMARY
 
   deploy:
     name: 🎉 Deploy
