@@ -22,7 +22,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: 📝 Print information
-        run: echo -e "## Input Parameters\n\`\`\`yaml\n${{ toJson(github.event.inputs) }}\n\`\`\`" >> $GITHUB_STEP_SUMMARY
+        run: echo -e "## Input Parameters\n\`\`\`yaml\n${{ toJson(github.event.inputs || {}) }}\n\`\`\`" >> $GITHUB_STEP_SUMMARY
 
   deploy:
     name: 🎉 Deploy
